@@ -1,0 +1,64 @@
+{
+  "components": [
+    {
+      "values": [
+        {
+          "label": "Bachelor",
+          "value": "bachelor"
+        },
+        {
+          "label": "Master",
+          "value": "master"
+        }
+      ],
+      "label": "Studienabschluss",
+      "type": "radio",
+      "layout": {
+        "row": "Row_01ujwtt",
+        "columns": null
+      },
+      "id": "Field_1w9hk27",
+      "key": "degree",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Titel der Abschlussarbeit",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_06xyr6y",
+        "columns": null
+      },
+      "id": "Field_0giamai",
+      "key": "title",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Gewünschter Starttermin",
+      "label": "Date time",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_1iheuv5",
+        "columns": null
+      },
+      "id": "Field_1dj1ee6",
+      "key": "startingDate",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "thesis-form",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.23.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.21.0",
+  "schemaVersion": 16
+}

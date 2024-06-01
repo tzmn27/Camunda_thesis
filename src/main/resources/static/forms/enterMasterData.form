@@ -1,0 +1,158 @@
+{
+  "components": [
+    {
+      "label": "Vorname",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0cgbjrg",
+        "columns": null
+      },
+      "id": "Field_0i9ysm5",
+      "key": "firstName",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Nachname",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0t9mj8y",
+        "columns": null
+      },
+      "id": "Field_0c87qsp",
+      "key": "lastName",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Matrikelnummer",
+      "type": "number",
+      "layout": {
+        "row": "Row_1rj6gt1",
+        "columns": null
+      },
+      "id": "Field_17s5fje",
+      "key": "matriculationNumber",
+      "decimalDigits": 0,
+      "validate": {
+        "required": true,
+        "min": 1000000,
+        "max": 9999999
+      }
+    },
+    {
+      "label": "Studiengang",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_13xyuf6",
+        "columns": null
+      },
+      "id": "Field_08wm2e4",
+      "key": "course",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Straße",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0fdm5uf",
+        "columns": null
+      },
+      "id": "Field_1cpneha",
+      "key": "street",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "PLZ",
+      "type": "number",
+      "layout": {
+        "row": "Row_14tfct2",
+        "columns": null
+      },
+      "id": "Field_0lftdwd",
+      "key": "postalCode",
+      "decimalDigits": 0,
+      "validate": {
+        "required": true,
+        "min": 1067,
+        "max": 99998
+      },
+      "serializeToString": false,
+      "properties": {}
+    },
+    {
+      "label": "Ort",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_139w4xb",
+        "columns": null
+      },
+      "id": "Field_0kmd8k9",
+      "key": "city",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "E-Mail",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1kzciau",
+        "columns": null
+      },
+      "id": "Field_18f7g6i",
+      "key": "mail",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Passwort",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0j9gr9t",
+        "columns": null
+      },
+      "id": "Field_1bctsnj",
+      "key": "password",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "action": "submit",
+      "label": "Absenden",
+      "type": "button",
+      "layout": {
+        "row": "Row_1ti4izf",
+        "columns": 2
+      },
+      "id": "Field_02zseui"
+    },
+    {
+      "action": "reset",
+      "label": "Zurücksetzen",
+      "type": "button",
+      "layout": {
+        "row": "Row_1ti4izf",
+        "columns": 14
+      },
+      "id": "Field_03vc110"
+    }
+  ],
+  "type": "default",
+  "id": "enter_master-data",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.23.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.21.0",
+  "schemaVersion": 16
+}
