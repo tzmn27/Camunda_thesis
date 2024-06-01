@@ -109,7 +109,8 @@
       "id": "Field_18f7g6i",
       "key": "mail",
       "validate": {
-        "required": true
+        "required": true,
+        "validationType": "email"
       }
     },
     {
@@ -124,26 +125,6 @@
       "validate": {
         "required": true
       }
-    },
-    {
-      "action": "submit",
-      "label": "Absenden",
-      "type": "button",
-      "layout": {
-        "row": "Row_1ti4izf",
-        "columns": 2
-      },
-      "id": "Field_02zseui"
-    },
-    {
-      "action": "reset",
-      "label": "Zurücksetzen",
-      "type": "button",
-      "layout": {
-        "row": "Row_1ti4izf",
-        "columns": 14
-      },
-      "id": "Field_03vc110"
     }
   ],
   "type": "default",

@@ -42,14 +42,15 @@
       "label": "Date time",
       "type": "datetime",
       "layout": {
-        "row": "Row_1iheuv5",
+        "row": "Row_118hvps",
         "columns": null
       },
-      "id": "Field_1dj1ee6",
-      "key": "startingDate",
+      "id": "Field_0vvyyyk",
+      "key": "startDate",
       "validate": {
         "required": true
-      }
+      },
+      "properties": {}
     }
   ],
   "type": "default",

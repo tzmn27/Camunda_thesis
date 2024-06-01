@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.1.2">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.23.0">
   <bpmn:process id="Thesis" name="Thesis" isExecutable="true" camunda:historyTimeToLive="P180D">
-    <bpmn:startEvent id="StartEvent" name="Request&#10;received">
+    <bpmn:startEvent id="StartEvent" name="Request&#10;received" camunda:initiator="initiator">
       <bpmn:outgoing>SequenceFlow1</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="SequenceFlow1" sourceRef="StartEvent" targetRef="ServiceTask_Logger" />
-    <bpmn:serviceTask id="ServiceTask_Logger" name="Log to console" camunda:delegateExpression="${logger}">
-      <bpmn:incoming>SequenceFlow1</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow2</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="SequenceFlow2" sourceRef="ServiceTask_Logger" targetRef="EndEvent" />
+    <bpmn:sequenceFlow id="SequenceFlow1" sourceRef="StartEvent" targetRef="check-user" />
+    <bpmn:sequenceFlow id="SequenceFlow2" sourceRef="enter-ThesisData" targetRef="EndEvent" />
     <bpmn:endEvent id="EndEvent" name="Request&#10;processed">
       <bpmn:incoming>SequenceFlow2</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:userTask id="enter-ThesisData" name="Thesisdaten eingeben" camunda:formKey="camunda-forms:app:forms/enterThesisData.form" camunda:assignee="${initiator}">
+      <bpmn:incoming>Flow_0v2t4go</bpmn:incoming>
+      <bpmn:incoming>Flow_05nw7ft</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1363d4j" name="Stammdaten eingepflegt?">
+      <bpmn:incoming>Flow_1ky6q69</bpmn:incoming>
+      <bpmn:outgoing>Flow_0v2t4go</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0byrrt5</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0v2t4go" name="Ja" sourceRef="Gateway_1363d4j" targetRef="enter-ThesisData">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${credentials}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0byrrt5" name="Nein" sourceRef="Gateway_1363d4j" targetRef="enter-masterData">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!credentials}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_05nw7ft" sourceRef="enter-masterData" targetRef="enter-ThesisData" />
+    <bpmn:userTask id="enter-masterData" name="Stammdaten pflegen" camunda:formKey="camunda-forms:app:forms/enterMasterData.form" camunda:assignee="${initiator}">
+      <bpmn:incoming>Flow_0byrrt5</bpmn:incoming>
+      <bpmn:outgoing>Flow_05nw7ft</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="check-user" name="Check für Userdaten" camunda:delegateExpression="${checkUser}">
+      <bpmn:incoming>SequenceFlow1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ky6q69</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1ky6q69" sourceRef="check-user" targetRef="Gateway_1363d4j" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Thesis">
@@ -23,28 +45,66 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0fkea3f_di" bpmnElement="EndEvent">
-        <dc:Bounds x="556" y="102" width="36" height="36" />
+        <dc:Bounds x="902" y="102" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="554" y="138" width="41" height="24" />
+          <dc:Bounds x="895" y="138" width="51" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1u2q9r6_di" bpmnElement="enter-ThesisData">
+        <dc:Bounds x="700" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1363d4j_di" bpmnElement="Gateway_1363d4j" isMarkerVisible="true">
+        <dc:Bounds x="455" y="95" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="449" y="65" width="63" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_05n98b2_di" bpmnElement="enter-masterData">
+        <dc:Bounds x="540" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_056fth0_di" bpmnElement="check-user">
+        <dc:Bounds x="280" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_08va5r8_di" bpmnElement="SequenceFlow1">
-        <di:waypoint xsi:type="dc:Point" x="209" y="120" />
-        <di:waypoint xsi:type="dc:Point" x="337" y="120" />
+        <di:waypoint x="209" y="120" />
+        <di:waypoint x="280" y="120" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="228" y="95" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow2_di" bpmnElement="SequenceFlow2">
-        <di:waypoint xsi:type="dc:Point" x="437" y="120" />
-        <di:waypoint xsi:type="dc:Point" x="556" y="120" />
+        <di:waypoint x="800" y="120" />
+        <di:waypoint x="902" y="120" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="496.5" y="99" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ServiceTask_16vok30_di" bpmnElement="ServiceTask_Logger">
-        <dc:Bounds x="337" y="80" width="100" height="80" />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0v2t4go_di" bpmnElement="Flow_0v2t4go">
+        <di:waypoint x="505" y="120" />
+        <di:waypoint x="700" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="597" y="102" width="12" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0byrrt5_di" bpmnElement="Flow_0byrrt5">
+        <di:waypoint x="480" y="145" />
+        <di:waypoint x="480" y="250" />
+        <di:waypoint x="540" y="250" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="484" y="195" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05nw7ft_di" bpmnElement="Flow_05nw7ft">
+        <di:waypoint x="640" y="250" />
+        <di:waypoint x="750" y="250" />
+        <di:waypoint x="750" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ky6q69_di" bpmnElement="Flow_1ky6q69">
+        <di:waypoint x="380" y="120" />
+        <di:waypoint x="455" y="120" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
