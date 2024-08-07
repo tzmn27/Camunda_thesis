@@ -40,7 +40,10 @@
         "required": true,
         "min": 1000000,
         "max": 9999999
-      }
+      },
+      "properties": {},
+      "serializeToString": false,
+      "appearance": {}
     },
     {
       "label": "Studiengang",

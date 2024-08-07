@@ -6,29 +6,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.inject.Named;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.camunda.spin.Spin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestClient;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RequestMapping("/config")
 @Named
-public class CheckUser implements JavaDelegate {
+public class GetPruefer implements JavaDelegate {
 
     private final ConfigProperties config;
 
-    public CheckUser(ConfigProperties config) {
+    public GetPruefer(ConfigProperties config) {
         this.config = config;
     }
 
     @Override
     @GetMapping
     public void execute(DelegateExecution execution){
+        Map<String, Object> variables = new HashMap<>();
         String token = config.apiToken();
-        String nutzer = (String) execution.getVariable("initiator");
-        System.out.println("Nutzer: " + nutzer);
         RestClient restClient = RestClient.builder().baseUrl("http://localhost:1337/api/").build();
         String result = restClient.get()
-                .uri("students/?filters[User][$eq]=" + nutzer).header("Authorization", "Bearer " + token)
+                .uri("pruefers/?filters[Verfuegbar][$eq]=true").header("Authorization", "Bearer " + token)
                 .header("Content-Type", "application/json")
                 .retrieve()
                 .body(String.class);
@@ -38,13 +41,16 @@ public class CheckUser implements JavaDelegate {
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonNode node = mapper.readTree(result).get("data");
-            if (node.isEmpty()) {
-                execution.setVariable("credentials", false);
-                System.out.println(false);
-            } else {
-                execution.setVariable("credentials", true);
-                System.out.println(true);
+            int counter = 0;
+
+            for(JsonNode subnode : node){
+                counter++;
+                String prof = subnode.get("attributes").get("Nachname").asText();
+                variables.put("pruefer"+counter,prof);
             }
+            execution.setVariable("selectPruefer",Spin.JSON(variables));
+            System.out.println(execution.getVariable("selectPruefer"));
+
         }catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

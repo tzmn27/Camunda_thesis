@@ -37,20 +37,19 @@
       }
     },
     {
-      "subtype": "date",
-      "dateLabel": "Gewünschter Starttermin",
-      "label": "Date time",
-      "type": "datetime",
+      "label": "Gewünschter Starttermin",
+      "type": "textfield",
       "layout": {
-        "row": "Row_118hvps",
+        "row": "Row_1qjrnzo",
         "columns": null
       },
-      "id": "Field_0vvyyyk",
+      "id": "Field_1xj6p0h",
       "key": "startDate",
       "validate": {
-        "required": true
+        "required": true,
+        "pattern": "^(3[01]|[12][0-9]|0?[1-9])(\\.)(1[0-2]|0?[1-9])\\2([0-9]{2})?[0-9]{2}$"
       },
-      "properties": {}
+      "description": "Format: dd.mm.yyyy, z.B. 08.12.2024"
     }
   ],
   "type": "default",

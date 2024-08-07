@@ -37,3 +37,4 @@ build/
 ### Mac OS ###
 .DS_Store
 /src/main/resources/config.yaml
+/src/test/java/org/camunda/project/Tests.java
