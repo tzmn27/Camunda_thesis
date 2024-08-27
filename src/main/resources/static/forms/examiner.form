@@ -1,0 +1,55 @@
+{
+  "components": [
+    {
+      "label": "1. Prüfer auswählen",
+      "type": "select",
+      "layout": {
+        "row": "Row_1gxkaid",
+        "columns": null
+      },
+      "id": "Field_0lm74ud",
+      "key": "firstExaminer",
+      "valuesExpression": "=[\n  {\n    \"label\": \"Prof. Dr. Dennis Winkel\",\n    \"value\": 1\n  },\n  {\n    \"label\": \"Prof. Dr. Maria Rechteck\",\n    \"value\": 2\n  },\n  {\n    \"label\": \"Dr. Fritz Dreieck\",\n    \"value\": 3\n  },\n  {\n    \"label\": \"Prof. Dr. Olga Kreis\",\n    \"value\": 4\n  },\n  {\n    \"label\": \"Prof. Dr. Robert Koch\",\n    \"value\": 5\n  }\n]",
+      "searchable": true,
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "2. Prüfer auswählen",
+      "type": "select",
+      "layout": {
+        "row": "Row_1gxkaid",
+        "columns": null
+      },
+      "id": "Field_0g14grc",
+      "key": "secondExaminer",
+      "valuesExpression": "=remove([\n  {\n    \"label\": \"Prof. Dr. Dennis Winkel\",\n    \"value\": 1\n  },\n  {\n    \"label\": \"Prof. Dr. Maria Rechteck\",\n    \"value\": 2\n  },\n  {\n    \"label\": \"Dr. Fritz Dreieck\",\n    \"value\": 3\n  },\n  {\n    \"label\": \"Prof. Dr. Olga Kreis\",\n    \"value\": 4\n  },\n  {\n    \"label\": \"Prof. Dr. Robert Koch\",\n    \"value\": 5\n  }\n],firstExaminer)",
+      "description": "Der erste Prüfer muss zuerst gewählt werden",
+      "validate": {
+        "required": true
+      },
+      "searchable": true
+    },
+    {
+      "label": "Select",
+      "type": "select",
+      "layout": {
+        "row": "Row_0ht2fea",
+        "columns": null
+      },
+      "id": "Field_088vw55",
+      "key": "select_0mulcf",
+      "valuesKey": ""
+    }
+  ],
+  "type": "default",
+  "id": "pruefer",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.23.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.21.0",
+  "schemaVersion": 16
+}

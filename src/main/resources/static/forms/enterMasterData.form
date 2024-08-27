@@ -17,7 +17,7 @@
       "label": "Nachname",
       "type": "textfield",
       "layout": {
-        "row": "Row_0t9mj8y",
+        "row": "Row_0cgbjrg",
         "columns": null
       },
       "id": "Field_0c87qsp",
@@ -46,27 +46,33 @@
       "appearance": {}
     },
     {
+      "values": [
+        {
+          "label": "Bahningenieurwesen",
+          "value": "Bahningenieurwesen"
+        },
+        {
+          "label": "Medieninformatik",
+          "value": "Medieninformatik"
+        },
+        {
+          "label": "Wirtschaftsinformatik",
+          "value": "Wirtschaftsinformatik"
+        },
+        {
+          "label": "Wirtschaftsmathematik",
+          "value": "Wirtschaftsmathematik"
+        }
+      ],
       "label": "Studiengang",
-      "type": "textfield",
+      "type": "select",
       "layout": {
-        "row": "Row_13xyuf6",
-        "columns": null
+        "row": "Row_1rj6gt1",
+        "columns": 12
       },
-      "id": "Field_08wm2e4",
+      "id": "Field_05hup9t",
       "key": "course",
-      "validate": {
-        "required": true
-      }
-    },
-    {
-      "label": "Straße",
-      "type": "textfield",
-      "layout": {
-        "row": "Row_0fdm5uf",
-        "columns": null
-      },
-      "id": "Field_1cpneha",
-      "key": "street",
+      "searchable": false,
       "validate": {
         "required": true
       }
@@ -93,8 +99,8 @@
       "label": "Ort",
       "type": "textfield",
       "layout": {
-        "row": "Row_139w4xb",
-        "columns": null
+        "row": "Row_14tfct2",
+        "columns": 12
       },
       "id": "Field_0kmd8k9",
       "key": "city",
@@ -103,10 +109,23 @@
       }
     },
     {
-      "label": "E-Mail",
+      "label": "Straße",
       "type": "textfield",
       "layout": {
-        "row": "Row_1kzciau",
+        "row": "Row_0qts60d",
+        "columns": null
+      },
+      "id": "Field_1cpneha",
+      "key": "street",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "THM Mail-Adresse",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1u1vir3",
         "columns": null
       },
       "id": "Field_18f7g6i",
@@ -114,19 +133,6 @@
       "validate": {
         "required": true,
         "validationType": "email"
-      }
-    },
-    {
-      "label": "Passwort",
-      "type": "textfield",
-      "layout": {
-        "row": "Row_0j9gr9t",
-        "columns": null
-      },
-      "id": "Field_1bctsnj",
-      "key": "password",
-      "validate": {
-        "required": true
       }
     }
   ],

@@ -1,0 +1,36 @@
+{
+  "components": [
+    {
+      "label": "Zulassung",
+      "type": "radio",
+      "layout": {
+        "row": "Row_0ta6e0a",
+        "columns": null
+      },
+      "id": "Field_0195sb3",
+      "key": "approve",
+      "validate": {
+        "required": true
+      },
+      "values": [
+        {
+          "label": "Zugelassen",
+          "value": "true"
+        },
+        {
+          "label": "Nicht Zugelassen",
+          "value": "false"
+        }
+      ]
+    }
+  ],
+  "type": "default",
+  "id": "Form_0vkv3wi",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.23.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.21.0",
+  "schemaVersion": 16
+}
